@@ -27,10 +27,9 @@
                             <td><?= htmlspecialchars($linha['descricao']) ?></td>
                             <td class="text-center">
                                 <a href="/lp3_projeto/generos/editar?id=<?= $linha['id'] ?>" class="btn btn-warning btn-sm">Editar</a>
-
                                 <a href="/lp3_projeto/generos/excluir?id=<?= $linha['id'] ?>" 
                                    class="btn btn-danger btn-sm" 
-                                   onclick="return confirm('Tem certeza que deseja excluir esta categoria?');">
+                                   onclick="return confirm('Tem certeza que deseja excluir este gênero?');">
                                    Excluir
                                 </a>
                             </td>

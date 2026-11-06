@@ -11,7 +11,7 @@
             <li><a href="/lp3_projeto/produtos">Produtos</a></li>
             <li><a href="/lp3_projeto/clientes">Clientes</a></li>
             <li><a href="/lp3_projeto/filmes">Filmes</a></li>
-            <li><a href="/lp3_projeto/genero">Gêneros</a></li>
+            <li><a href="/lp3_projeto/generos">Gêneros</a></li>
             <li><a href="/lp3_projeto/livros">Livros</a></li>
         </ul>
     </nav>

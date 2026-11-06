@@ -23,7 +23,7 @@ class Genero
         $stmt = $this->db->prepare($sql);
         $values = [
             ':nome' => $nome,
-            ':descricao' => $descricao
+            ':descricao' => $descricao,
         ];
         return $stmt->execute($values);
     }

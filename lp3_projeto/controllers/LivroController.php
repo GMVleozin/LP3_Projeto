@@ -1,37 +1,41 @@
 <?php
-class ProdutoController
+class LivroController
 {
     private $model;
-    private $categoriaModel;
+    private $generoModel;
 
     public function __construct()
     {
-        $this->model = new Produto();
-        $this->categoriaModel = new Categoria();
+        $this->model = new Livro();
+        $this->generoModel = new Genero();
     }
 
     public function index()
     {
         $dados = $this->model->listar();
-        require __DIR__ . '/../views/produtos/index.php';
+        require __DIR__ . '/../views/livros/index.php';
     }
 
     public function adicionar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $produto = filter_input(INPUT_POST, 'produto', FILTER_SANITIZE_SPECIAL_CHARS);
-            $valor = filter_input(INPUT_POST, 'valor', FILTER_VALIDATE_FLOAT);
-            $categoria_id = filter_input(INPUT_POST, 'categoria', FILTER_VALIDATE_INT);
-            $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
+            $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
+            $autor = filter_input(INPUT_POST, 'autor', FILTER_SANITIZE_SPECIAL_CHARS);
+            $isbn = filter_input(INPUT_POST, 'isbn', FILTER_SANITIZE_SPECIAL_CHARS);
+            $ano_publicacao = filter_input(INPUT_POST, 'ano_publicacao', FILTER_VALIDATE_INT);
+            $sinopse = filter_input(INPUT_POST, 'sinopse', FILTER_SANITIZE_SPECIAL_CHARS);
+            $capa = filter_input(INPUT_POST, 'capa', FILTER_SANITIZE_SPECIAL_CHARS);
+            $id_genero = filter_input(INPUT_POST, 'id_genero', FILTER_VALIDATE_INT);
+            $criado_em = filter_input(INPUT_POST, 'criado_em', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ($produto && $valor && $categoria_id && $descricao) {
-                $this->model->salvar($produto, $valor, $categoria_id, $descricao);
-                header('Location: /lp3_projeto/produtos');
+            if ($titulo && $autor && $id_genero) {
+                $this->model->salvar($titulo, $autor, $isbn, $ano_publicacao, $sinopse, $capa, $id_genero, $criado_em);
+                header('Location: /lp3_projeto/livros');
                 exit();
             }
         }
-        $categorias = $this->categoriaModel->listar();
-        require __DIR__ . '/../views/produtos/criar.php';
+        $generos = $this->generoModel->listar();
+        require __DIR__ . '/../views/livros/criar.php';
     }
 
     public function editar()
@@ -39,20 +43,24 @@ class ProdutoController
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
         if (!$id) {
-            header('Location: /lp3_projeto/produtos');
+            header('Location: /lp3_projeto/livros');
             exit;
         }
 
         // Verifica se houve post e faz a gravação dos dados no banco
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $produto = filter_input(INPUT_POST, 'produto', FILTER_SANITIZE_SPECIAL_CHARS);
-            $valor = filter_input(INPUT_POST, 'valor', FILTER_VALIDATE_FLOAT);
-            $categoria_id = filter_input(INPUT_POST, 'categoria', FILTER_VALIDATE_INT);
-            $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
+            $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
+            $autor = filter_input(INPUT_POST, 'autor', FILTER_VALIDATE_FLOAT);
+            $isbn = filter_input(INPUT_POST, 'isbn', FILTER_VALIDATE_INT);
+            $ano_publicacao = filter_input(INPUT_POST, 'ano_publicacao', FILTER_SANITIZE_SPECIAL_CHARS);
+            $sinopse = filter_input(INPUT_POST, 'sinopse', FILTER_SANITIZE_SPECIAL_CHARS);
+            $capa = filter_input(INPUT_POST, 'capa', FILTER_VALIDATE_FLOAT);
+            $id_genero = filter_input(INPUT_POST, 'id_genero', FILTER_VALIDATE_INT);
+            $criado_em = filter_input(INPUT_POST, 'criado_em', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ($produto && $valor !== false && $categoria_id && $descricao) {
-                $this->model->atualizar($id, $produto, $valor, $categoria_id, $descricao);
-                header('Location: /lp3_projeto/produtos');
+            if ($titulo && $autor !== false && $id_genero) {
+                $this->model->atualizar($titulo, $autor, $isbn, $ano_publicacao, $sinopse, $capa, $id_genero, $criado_em);
+                header('Location: /lp3_projeto/livros');
                 exit;
             }
         }
@@ -61,12 +69,12 @@ class ProdutoController
         $dado = $this->model->buscarPorId($id);
 
         if (!$dado) {
-            header('Location: /lp3_projeto/produtos');
+            header('Location: /lp3_projeto/livros');
             exit;
         }
 
-        $categorias = $this->categoriaModel->listar();
-        require __DIR__ . '/../views/produtos/editar.php';
+        $generos = $this->generoModel->listar();
+        require __DIR__ . '/../views/livros/editar.php';
     }
 
     public function excluir()
@@ -77,7 +85,7 @@ class ProdutoController
             $this->model->excluir($id);
         }
 
-        header('Location: /lp3_projeto/produtos');
+        header('Location: /lp3_projeto/livros');
         exit;
 
     }

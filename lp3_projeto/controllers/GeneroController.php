@@ -17,10 +17,10 @@ class GeneroController
     public function adicionar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nome = filter_input(INPUT_POST, '$nome', FILTER_SANITIZE_SPECIAL_CHARS);
+            $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
             $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ($nome && $descricao) {
+            if ($nome) {
                 $this->model->salvar($nome, $descricao);
                 header('Location: /lp3_projeto/generos');
                 exit();
@@ -39,14 +39,14 @@ class GeneroController
             exit;
         }
 
-        // Verifica se house post e faz a gravação dos dados no banco
+        // Verifica se houve post e faz a gravação dos dados no banco
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $categoria = filter_input(INPUT_POST, 'categoria', FILTER_SANITIZE_SPECIAL_CHARS);
+            $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
             $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ($categoria && $descricao) {
-                $this->model->atualizar($id, $categoria, $descricao);
-                header('Location: /lp3_projeto/categorias');
+            if ($nome) {
+                $this->model->atualizar($id, $nome, $descricao);
+                header('Location: /lp3_projeto/generos');
                 exit;
             }
         }
@@ -55,11 +55,11 @@ class GeneroController
         $dado = $this->model->buscarPorId($id);
 
         if (!$dado) {
-            header('Location: /lp3_projeto/categorias');
+            header('Location: /lp3_projeto/generos');
             exit;
         }
 
-        require __DIR__ . '/../views/categorias/editar.php';
+        require __DIR__ . '/../views/generos/editar.php';
     }
 
     public function excluir()
@@ -70,7 +70,7 @@ class GeneroController
             $this->model->excluir($id);
         }
 
-        header('Location: /lp3_projeto/categorias');
+        header('Location: /lp3_projeto/generos');
         exit;
 
     }
