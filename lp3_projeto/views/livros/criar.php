@@ -8,7 +8,7 @@
             <h3>Cadastrar Novo Livro</h3>
         </div>
 
-        <form action="/lp3_projeto/livros/adicionar" method="POST" class="card-form">
+        <form action="/lp3_projeto/livros/adicionar" method="POST" class="card-form" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo" required class="form-control">
@@ -26,17 +26,17 @@
 
             <div class="form-group">
                 <label for="ano_publicacao">Ano de Publicação:</label>
-                <input type="number" step="1" id="ano_publicacao" name="ano_publicacao" class="form-control">
+                <input type="number" id="ano_publicacao" name="ano_publicacao" class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="sinopse">Sinopse:</label>
-                <input type="text" id="sinopse" name="sinopse" class="form-control">
+                <textarea name="sinopse" id="sinopse" class="form-control"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="capa">Capa:</label>
-                <input type="text" id="capa" name="capa" class="form-control">
+                <input type="file" id="capa" name="capa" class="form-control">
             </div>
 
             <div class="form-group">
@@ -50,8 +50,8 @@
             </div>
 
             <div class="form-group">
-                <label for="criado_em">Criado em:</label>
-                <input type="text" id="criado_em" name="criado_em" class="form-control">
+                <label for="criado_em">Data de Criação:</label>
+                <input type="date" id="criado_em" name="criado_em" class="form-control">
             </div>
 
             <div class="mt-3 d-flex gap-2">

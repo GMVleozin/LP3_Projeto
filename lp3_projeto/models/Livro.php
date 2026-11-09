@@ -13,7 +13,7 @@ class Livro
 
     public function listar()
     {
-        $stmt = $this->db->query("SELECT * FROM $this->table ORDER BY id asc");
+        $stmt = $this->db->query("SELECT * FROM $this->table ORDER BY id DESC");
         return $stmt->fetchAll();
     }
 
@@ -36,7 +36,7 @@ class Livro
 
     public function atualizar(int $id, string $titulo, string $autor, string $isbn, int $ano_publicacao, string $sinopse, string $capa, int $id_genero, string $criado_em)
     {
-        $sql = "UPDATE $this->table SET titulo = :titulo, autor = :autor, isbn = :isbn, ano_publicacao = :ano_publicacao, sinopse = :sinopse, capa = :capa, id_genero = :id_genero, criado_em = :criado_em  WHERE id = :id";
+        $sql = "UPDATE $this->table SET titulo = :titulo, autor = :autor, isbn = :isbn, ano_publicacao = :ano_publicacao, sinopse = :sinopse, capa = :capa, id_genero = :id_genero, criado_em = :criado_em WHERE id = :id";
         $stmt = $this->db->prepare($sql);
         $values = [
             ':titulo' => $titulo,

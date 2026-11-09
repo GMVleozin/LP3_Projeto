@@ -54,6 +54,10 @@ $rotas = [
     '/livros/adicionar'     => ['controller' => 'LivroController',      'metodo' => 'adicionar'],
     '/livros/editar'        => ['controller' => 'LivroController',      'metodo' => 'editar'],
     '/livros/excluir'       => ['controller' => 'LivroController',      'metodo' => 'excluir',],
+    '/eventos'              => ['controller' => 'EventoController',     'metodo' => 'index'],
+    '/eventos/adicionar'    => ['controller' => 'EventoController',     'metodo' => 'adicionar'],
+    '/eventos/editar'       => ['controller' => 'EventoController',     'metodo' => 'editar'],
+    '/eventos/excluir'      => ['controller' => 'EventoController',     'metodo' => 'excluir',],
 ];
 
 // Verificação de existência da rota

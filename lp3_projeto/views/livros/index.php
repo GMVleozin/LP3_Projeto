@@ -12,14 +12,15 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Título</th>
                     <th>Autor</th>
                     <th>Isbn</th>
                     <th>Ano de Publicação</th>
                     <th>Sinopse</th>
-                    <th>Capa</th>
                     <th>Gênero</th>
-                    <th>Criado em</th>
+                    <th>Data de Criação</th>
+                    <th>Capa</th>
                     <th class="text-center">Ações</th>
                 </tr>
             </thead>
@@ -27,17 +28,21 @@
                 <?php if (!empty($dados)): ?>
                     <?php foreach ($dados as $linha): ?>
                         <tr>
+                            <td><?= $linha['id'] ?></td>
                             <td><?= htmlspecialchars($linha['titulo']) ?></td>
                             <td><?= htmlspecialchars($linha['autor']) ?></td>
                             <td><?= htmlspecialchars($linha['isbn']) ?></td>
                             <td><?= htmlspecialchars($linha['ano_publicacao']) ?></td>
                             <td><?= htmlspecialchars($linha['sinopse']) ?></td>
-                            <td><?= htmlspecialchars($linha['capa']) ?></td>
                             <td><?= htmlspecialchars($linha['id_genero']) ?></td>
                             <td><?= htmlspecialchars($linha['criado_em']) ?></td>
+                            <td><?php  if (!empty($linha['capa'])): ?>
+                                <img src="/lp3_projeto/uploads/livros/<?=  rawurlencode($linha['capa']) ?>" 
+                                style="max-width: 100px; height:auto;">
+                                <?php endif ?>
+                            </td>
                             <td class="text-center">
                                 <a href="/lp3_projeto/livros/editar?id=<?= $linha['id'] ?>" class="btn btn-warning btn-sm">Editar</a>
-
                                 <a href="/lp3_projeto/livros/excluir?id=<?= $linha['id'] ?>" 
                                    class="btn btn-danger btn-sm" 
                                    onclick="return confirm('Tem certeza que deseja excluir este livro?');">
@@ -48,7 +53,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="9" style="text-align: center;">Nenhum livro cadastrado.</td>
+                        <td colspan="10" style="text-align: center;">Nenhum livro cadastrado.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

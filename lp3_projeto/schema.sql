@@ -84,3 +84,13 @@ CREATE TABLE livros (
         ON UPDATE CASCADE
         ON DELETE SET NULL
 ) ENGINE=InnoDB;
+
+CREATE TABLE eventos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(120) NOT NULL,
+    descricao TEXT,
+    local_evento VARCHAR(100),
+    data_evento DATETIME NOT NULL,
+    capacidade INT,
+    ativo BOOLEAN DEFAULT TRUE
+);
